@@ -2,6 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,7 +45,18 @@ public class CSVFile {
 	public void writeCSV() {
 		try {
 			CSVWriter csvWriter = new CSVWriter(new FileWriter("./output/users.csv"));
-			csvWriter.writeAll(entriesList);
+			// add the header for the csv file
+			List<String[]> list = new ArrayList<>(Main.entriesList);
+			String[] header = new String[6];
+			header[0] = "User ID";
+			header[1] = "First Name";
+			header[2] = "Last Name";
+			header[3] = "User Name";
+			header[4] = "User Type";
+			header[5] = "Last Login Time";
+			
+			list.add(0, header);
+			csvWriter.writeAll(list);
 			csvWriter.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

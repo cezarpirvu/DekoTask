@@ -64,7 +64,7 @@ public class JSONFile {
 	// write the json file
 	public void writeJSON() {
 		JSONArray jsonWriter = new JSONArray();
-		for(String[] entry : entriesList) {
+		for(String[] entry : Main.entriesList) {
 			LinkedHashMap<String, String> obj = new LinkedHashMap<>();
 			obj.put("user_id", entry[0]);
 			obj.put("first_name", entry[1]);
