@@ -13,23 +13,37 @@ public class CSVFile {
 	
 	private String csvPath;
 	private List<String[]> entriesList;
+	private String[] header;
 	
 	public CSVFile(String csvPath, List<String[]> entriesList) {
 		this.csvPath = csvPath;
 		this.entriesList = entriesList;
 	}
 	
-	// read a csv file from a path and store the entries to a list
+	// removes and retrieves the header of the csv file (User Id, First Name...)
+	public String[] retrieveHeader(List<String[]> entriesList) {
+		// save the header
+		int length = entriesList.get(0).length;
+		String[] header = new String[length];
+		
+		for(int i = 0; i < length; i++)
+			header[i] = entriesList.get(0)[i];
+		// remove it from the list
+		entriesList.remove(0);
+		
+		return header;
+	}
+	
+	// read a csv file from a path and merge the entries to a list
 	public void readCSV() {
 		try {
 			CSVReader csvReader = new CSVReader(new FileReader(csvPath));
 			try {
 				entriesList = csvReader.readAll();
-				entriesList.remove(0);
-				
-				// sort the list
+				// removes and retrieves the header
+				header = retrieveHeader(entriesList);
+				// sort the list ascending by user id
 				Collections.sort(entriesList, new SortComparator());	
-				
 				csvReader.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -44,20 +58,10 @@ public class CSVFile {
 	// write the csv file
 	public void writeCSV() {
 		try {
-			CSVWriter csvWriter = new CSVWriter(new FileWriter("./output/users.csv"));
-			
+			CSVWriter csvWriter = new CSVWriter(new FileWriter(Constants.CSV_OUTPUT_PATH));
 			// add the header for the csv file
-			List<String[]> list = new ArrayList<>(Main.entriesList);
-			String[] header = new String[6];
-			header[0] = "User ID";
-			header[1] = "First Name";
-			header[2] = "Last Name";
-			header[3] = "User Name";
-			header[4] = "User Type";
-			header[5] = "Last Login Time";
-			list.add(0, header);
-			
-			csvWriter.writeAll(list);
+			Main.entriesList.add(0, header);
+			csvWriter.writeAll(Main.entriesList);
 			csvWriter.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
