@@ -6,6 +6,7 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -78,9 +79,10 @@ public class XMLFile {
 			Element usersRoot = document.createElement("users");
 			document.appendChild(usersRoot);
 			
-			Element user = document.createElement("user");
 			for(String[] entry : entriesList) {
+				Element user = document.createElement("user");
 				usersRoot.appendChild(user);
+				
 				Element userId = document.createElement("userid");
 				user.appendChild(userId);
 				userId.appendChild(document.createTextNode(entry[0]));
@@ -105,17 +107,19 @@ public class XMLFile {
 				user.appendChild(lastLoginTime);
 				lastLoginTime.appendChild(document.createTextNode(entry[5]));
 			}
-			document.getDocumentElement().appendChild(user);
 			
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(document);
-			StreamResult result =
-			         new StreamResult(new File("./output/users.xml"));
+			StreamResult result = new StreamResult(new File("./output/users.xml"));
+			
+			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+		    transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+		    transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		    transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+		    transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+			
 			transformer.transform(source, result);
-			StreamResult consoleResult =
-			         new StreamResult(System.out);
-			transformer.transform(source, consoleResult);
 		} catch (ParserConfigurationException | TransformerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
