@@ -134,11 +134,13 @@ public class Main {
 	public static void main(String[] args) throws CustomException {
 		// TODO Auto-generated method stub
 		
-		// read the specified types of files from the data folder
-		// currently supported formats are csv, json, xml
-		readFiles("csv", "xml", "json");
-		// write the specified types of files in the output folder
-		// currently supported formats are csv, json, xml
-		writeFiles("csv", "xml", "json");
+		if (entriesList != null) {
+			// read the specified types of files from the data folder
+			// currently supported formats are csv, json, xml
+			readFiles("csv", "xml", "json");
+			// write the specified types of files in the output folder
+			// currently supported formats are csv, json, xml
+			writeFiles("csv", "xml", "json");
+		} else throw new CustomException("The list is null!");
 	}
 }

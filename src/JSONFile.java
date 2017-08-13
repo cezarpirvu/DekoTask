@@ -62,10 +62,12 @@ public class JSONFile {
 		JSONArray jsonWriter = new JSONArray();
 		
 		for(String[] entry : Main.entriesList) {
-			LinkedHashMap<String, String> obj = new LinkedHashMap<>();
-			
-			for(int i = 0; i < entry.length; i++)
-				obj.put(jsonKeys.get(i), entry[i]);
+			LinkedHashMap<String, Object> obj = new LinkedHashMap<>();
+			for(int i = 0; i < entry.length; i++) {
+				if (i == 0)
+					obj.put(jsonKeys.get(i), Integer.parseInt(entry[i]));
+				else obj.put(jsonKeys.get(i), entry[i]);
+			}
 			jsonWriter.add(obj);
 		}
 		
