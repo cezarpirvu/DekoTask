@@ -78,6 +78,35 @@ public class XMLFile {
 			Element usersRoot = document.createElement("users");
 			document.appendChild(usersRoot);
 			
+			Element user = document.createElement("user");
+			for(String[] entry : entriesList) {
+				usersRoot.appendChild(user);
+				Element userId = document.createElement("userid");
+				user.appendChild(userId);
+				userId.appendChild(document.createTextNode(entry[0]));
+				
+				Element firstName = document.createElement("firstname");
+				user.appendChild(firstName);
+				firstName.appendChild(document.createTextNode(entry[1]));
+				
+				Element surName = document.createElement("surname");
+				user.appendChild(surName);
+				surName.appendChild(document.createTextNode(entry[2]));
+				
+				Element userName = document.createElement("username");
+				user.appendChild(userName);
+				userName.appendChild(document.createTextNode(entry[3]));
+				
+				Element type = document.createElement("type");
+				user.appendChild(type);
+				type.appendChild(document.createTextNode(entry[4]));
+				
+				Element lastLoginTime = document.createElement("lastlogintime");
+				user.appendChild(lastLoginTime);
+				lastLoginTime.appendChild(document.createTextNode(entry[5]));
+			}
+			document.getDocumentElement().appendChild(user);
+			
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(document);
