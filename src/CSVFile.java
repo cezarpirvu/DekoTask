@@ -45,6 +45,7 @@ public class CSVFile {
 	public void writeCSV() {
 		try {
 			CSVWriter csvWriter = new CSVWriter(new FileWriter("./output/users.csv"));
+			
 			// add the header for the csv file
 			List<String[]> list = new ArrayList<>(Main.entriesList);
 			String[] header = new String[6];
@@ -54,8 +55,8 @@ public class CSVFile {
 			header[3] = "User Name";
 			header[4] = "User Type";
 			header[5] = "Last Login Time";
-			
 			list.add(0, header);
+			
 			csvWriter.writeAll(list);
 			csvWriter.close();
 		} catch (IOException e) {

@@ -1,5 +1,21 @@
 [
   {
+    "user_id": "1",
+    "first_name": "John",
+    "last_name": "Doe",
+    "username": "John1",
+    "user_type": "Employee",
+    "last_login_time": "12-01-2015 12:01:34"
+  },
+  {
+    "user_id": "2",
+    "first_name": "Mary",
+    "last_name": "Jane",
+    "username": "Mary23",
+    "user_type": "Employee",
+    "last_login_time": "01-11-2014 13:45:42"
+  },
+  {
     "user_id": "3",
     "first_name": "David",
     "last_name": "Payne",
@@ -46,6 +62,14 @@
     "username": "bobby3",
     "user_type": "Manager",
     "last_login_time": "01-02-2015 13:01:00"
+  },
+  {
+    "user_id": "9",
+    "first_name": "Shaun",
+    "last_name": "Stevens",
+    "username": "shaun",
+    "user_type": "Employee",
+    "last_login_time": "01-02-2015 13:00:00"
   },
   {
     "user_id": "10",
