@@ -21,7 +21,7 @@ public class JSONFile {
 	private String jsonPath;
 	private List<String[]> entriesList;
 	// preserve the correct order for the json values
-	private List<String> jsonKeys = Arrays.asList("user_id", "first_name", "last_name", "username", "user_type", "last_login_time");
+	private static List<String> jsonKeys = Arrays.asList("user_id", "first_name", "last_name", "username", "user_type", "last_login_time");
 	
 	public JSONFile(String jsonPath, List<String[]> entriesList) {
 		this.jsonPath = jsonPath;
@@ -58,7 +58,7 @@ public class JSONFile {
 	}
 	
 	// write the json file
-	public void writeJSON() {
+	public static void writeJSON() {
 		JSONArray jsonWriter = new JSONArray();
 		
 		for(String[] entry : Main.entriesList) {

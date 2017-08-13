@@ -16,14 +16,6 @@
     "last_login_time": "01-11-2014 13:45:42"
   },
   {
-    "user_id": "3",
-    "first_name": "David",
-    "last_name": "Payne",
-    "username": "Dpayne",
-    "user_type": "Manager",
-    "last_login_time": "23-09-2014 09:35:02"
-  },
-  {
     "user_id": "4",
     "first_name": "Joe",
     "last_name": "Public",
@@ -70,13 +62,5 @@
     "username": "shaun",
     "user_type": "Employee",
     "last_login_time": "01-02-2015 13:00:00"
-  },
-  {
-    "user_id": "10",
-    "first_name": "Ruby",
-    "last_name": "Wax",
-    "username": "ruby",
-    "user_type": "Employee",
-    "last_login_time": "12-12-2014 08:09:13"
   }
 ]

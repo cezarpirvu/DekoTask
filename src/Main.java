@@ -57,57 +57,64 @@ public class Main {
 		else return "No extension found!";
 	}
 	
-	// read/write each file
-	public static void readFiles() throws ParserConfigurationException, SAXException, IOException {
-		
-		CSVFile csv = null;
-		JSONFile json = null;
-		XMLFile xml = null;
-		
+	// read csv, json or xml files from the data folder
+	public static void readFiles(String...extensions) {
+		// retrieve all the files from the data folder
 		File f = new File(Constants.INPUT_PATH);
 		File[] files = f.listFiles();
 		
 		for(File file : files) {
-			String path = Constants.INPUT_PATH + file.getName();			
-			// find and read/write csv files
-			if (getFileType(file).equals("csv")) {
-				csv = new CSVFile(path, entriesList);
-				csv.readCSV();
-				// update the list
-				entriesList = new ArrayList<>(csv.getEntriesList());
-			} else {
-				// find and read/write json files
-				if (getFileType(file).equals("json")) {
-					json = new JSONFile(path, entriesList);
-					json.readJSON();
-					// update the list
-					entriesList = new ArrayList<>(json.getEntriesList());
-				} else {
-					// find and read xml files
-					if (getFileType(file).equals("xml")) {
-						xml = new XMLFile(path, entriesList);
-						xml.readXML();
+			// path of the file
+			String path = Constants.INPUT_PATH + file.getName();
+			
+			for(String extension : extensions) {
+				// read the files according to the specified extensions
+				if (getFileType(file).equals(extension)) {
+					if (getFileType(file).equals("csv")) {
+						CSVFile csv = new CSVFile(path, entriesList);
+						csv.readCSV();
 						// update the list
-						entriesList = new ArrayList<>(xml.getEntriesList());
+						entriesList = new ArrayList<>(csv.getEntriesList());
 					} else {
-						//TODO ERROR
+						if (getFileType(file).equals("json")) {
+							JSONFile json = new JSONFile(path, entriesList);
+							json.readJSON();
+							// update the list
+							entriesList = new ArrayList<>(json.getEntriesList());
+						} else {
+							if (getFileType(file).equals("xml")) {
+								XMLFile xml = new XMLFile(path, entriesList);
+								xml.readXML();
+								// update the list
+								entriesList = new ArrayList<>(xml.getEntriesList());
+							}
+						}
 					}
 				}
-				
 			}
 		}
-		
-		if (json != null)
-			json.writeJSON();
-		if (csv != null)
-			csv.writeCSV();
-		if (xml != null)
-			xml.writeXML();
+	}
+	
+	// write csv, json or xml files to the output folder
+	public static void writeFiles(String...extensions) {
+		for(String extension : extensions) {
+			if (extension.equals("csv"))
+				CSVFile.writeCSV();
+			else
+				if (extension.equals("json"))
+					JSONFile.writeJSON();
+				else
+					if (extension.equals("xml"))
+						XMLFile.writeXML();
+		}
 	}
 	
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		// TODO Auto-generated method stub
 		
-		readFiles();
+		// read the specified types of files from the data folder
+		readFiles("csv", "xml", "json");
+		// write the specified types of files in the output folder
+		writeFiles("csv", "xml", "json");
 	}
 }

@@ -17,14 +17,6 @@
         <lastlogintime>01-11-2014 13:45:42</lastlogintime>
     </user>
     <user>
-        <userid>3</userid>
-        <firstname>David</firstname>
-        <surname>Payne</surname>
-        <username>Dpayne</username>
-        <type>Manager</type>
-        <lastlogintime>23-09-2014 09:35:02</lastlogintime>
-    </user>
-    <user>
         <userid>4</userid>
         <firstname>Joe</firstname>
         <surname>Public</surname>
@@ -71,13 +63,5 @@
         <username>shaun</username>
         <type>Employee</type>
         <lastlogintime>01-02-2015 13:00:00</lastlogintime>
-    </user>
-    <user>
-        <userid>10</userid>
-        <firstname>Ruby</firstname>
-        <surname>Wax</surname>
-        <username>ruby</username>
-        <type>Employee</type>
-        <lastlogintime>12-12-2014 08:09:13</lastlogintime>
     </user>
 </users>

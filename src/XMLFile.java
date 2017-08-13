@@ -23,9 +23,9 @@ import org.xml.sax.SAXException;
 public class XMLFile {
 	
 	private String xmlPath;
-	private List<String[]> entriesList;
+	private static List<String[]> entriesList;
 	// list containing the xml tags
-	private List<String> xmlTags = Arrays.asList("userid", "firstname", "surname", "username", "type", "lastlogintime");
+	private static List<String> xmlTags = Arrays.asList("userid", "firstname", "surname", "username", "type", "lastlogintime");
 	
 	public XMLFile(String xmlPath, List<String[]> entriesList) {
 		this.xmlPath = xmlPath;
@@ -65,7 +65,7 @@ public class XMLFile {
 	}
 	
 	// sort and write the merged list in a xml type document
-	public void writeXML() {
+	public static void writeXML() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder;
 		Document document;

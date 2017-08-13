@@ -13,7 +13,7 @@ public class CSVFile {
 	
 	private String csvPath;
 	private List<String[]> entriesList;
-	private String[] header;
+	private static String[] header;
 	
 	public CSVFile(String csvPath, List<String[]> entriesList) {
 		this.csvPath = csvPath;
@@ -56,12 +56,13 @@ public class CSVFile {
 	}
 	
 	// write the csv file
-	public void writeCSV() {
+	public static void writeCSV() {
 		try {
 			CSVWriter csvWriter = new CSVWriter(new FileWriter(Constants.CSV_OUTPUT_PATH));
 			// add the header for the csv file
 			Main.entriesList.add(0, header);
 			csvWriter.writeAll(Main.entriesList);
+			Main.entriesList.remove(0);
 			csvWriter.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
